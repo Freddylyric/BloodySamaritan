@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "456107379113",
+    "project_id": "bloodysamaritan-7c5c6",
+    "storage_bucket": "bloodysamaritan-7c5c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456107379113:android:3287d09a312393909e5cb8",
+        "android_client_info": {
+          "package_name": "ke.co.freddylyric.bloodysamaritan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456107379113-3hei84siduk92kc7vgef7fs6rjp96dhv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ke.co.freddylyric.bloodysamaritan",
+            "certificate_hash": "0eaeb90d36b4176f8a723a8803caf156cbe8b311"
+          }
+        },
+        {
+          "client_id": "456107379113-i2tm3cu27acs60mhfrq9f8l5age7ue83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEY0ZTjGT7ZoDhDmIMRVgc1odk3UTgQ68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456107379113-i2tm3cu27acs60mhfrq9f8l5age7ue83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Bloody Samaritan</string>
+    <string name="slogan">Donate Blood and Save Lives</string>
+    <string name="welcome">Hello, Welcome</string>
+    <string name="description">What best describes you?</string>
+    <string name="donorRegistration">Donor Registration</string>
+    <string name="recipientRegistration">Recipient Registration</string>
+    <string name="alreadyRegistered">Already Registered? Sign in</string>
+
+    <string-array name="bloodGroups">
+        <item> Select your Blood Group </item>
+        <item> A+ </item>
+        <item> A- </item>
+        <item> B+ </item>
+        <item> B- </item>
+        <item> AB+ </item>
+        <item> AB- </item>
+        <item> O+ </item>
+        <item> O- </item>
+    </string-array>
+</resources>
