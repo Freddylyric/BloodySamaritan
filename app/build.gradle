@@ -46,4 +46,12 @@ dependencies {
     // firebase dependency
     implementation platform('com.google.firebase:firebase-bom:30.3.1')
 
+    //dialogflow
+    implementation 'com.google.cloud:google-cloud-dialogflow:2.1.0'
+    implementation 'io.grpc:grpc-okhttp:1.30.0'
+
+    //image
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
 }
