@@ -147,7 +147,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
 
 
                                 //creating hash keys
-                                HashMap userInfo = new HashMap();
+                                HashMap<String, Object> userInfo = new HashMap<String, Object>();
                                 userInfo.put("id", currentUserId);
                                 userInfo.put("name", fullName);
                                 userInfo.put("email", email);
@@ -157,7 +157,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("type", "donor");
                                 userInfo.put("search", "donor" + bloodGroup);
 
-                                userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
+                                userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task task) {
                                         if (task.isSuccessful()){
@@ -174,7 +174,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 //save profile image to database
                                 if (resultUri !=null){
                                     final StorageReference filePath = FirebaseStorage.getInstance().getReference()
-                                            .child("profile images").child(currentUserId);
+                                            .child("profileImage").child(currentUserId);
                                     Bitmap bitmap = null;
 
                                     try {
@@ -205,14 +205,14 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         String imageUrl = uri.toString();
-                                                        Map newImageMap = new HashMap();
+                                                        Map newImageMap = new HashMap<>();
                                                         newImageMap.put("profilepictureurl", imageUrl);
 
                                                         userDatabaseRef.updateChildren(newImageMap).addOnCompleteListener(new OnCompleteListener() {
                                                             @Override
                                                             public void onComplete(@NonNull Task task) {
                                                                 if (task.isSuccessful()){
-                                                                    Toast.makeText(DonorRegistrationActivity.this, "Image URL added to database successfully", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(DonorRegistrationActivity.this, "Image url added to database successfully", Toast.LENGTH_SHORT).show();
                                                                 }else{
                                                                     Toast.makeText(DonorRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                                                 }

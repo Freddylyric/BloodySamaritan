@@ -9,6 +9,8 @@
 
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="RequestMessage">Write a heart felt message and add an image for the community, somebody will defintely help you if possible</string>
+    <string name="choose_image"><u>Choose Image</u></string>
 
     <string-array name="bloodGroups">
         <item> Select your Blood Group </item>

@@ -3,11 +3,12 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+        //mavenCentral()
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.android.tools.build:gradle:7.2.2'
     // firebase dependency
         classpath 'com.google.gms:google-services:4.3.13'
         
@@ -19,7 +20,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+      //  mavenCentral()
+        mavenCentral()
         
     }
 }

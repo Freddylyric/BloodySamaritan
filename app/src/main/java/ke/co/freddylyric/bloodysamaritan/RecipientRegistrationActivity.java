@@ -34,6 +34,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -147,7 +148,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
 
 
                                 //creating hash keys
-                                HashMap userInfo = new HashMap();
+                                HashMap<String, Object> userInfo = new HashMap<String, Object>();
                                 userInfo.put("id", currentUserId);
                                 userInfo.put("name", fullName);
                                 userInfo.put("email", email);
@@ -157,17 +158,14 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("type", "recipient");
                                 userInfo.put("search", "recipient" + bloodGroup);
 
-                                userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                        if (task.isSuccessful()){
-                                            Toast.makeText(RecipientRegistrationActivity.this, "Information Received Successfully", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(RecipientRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                        }
-                                        finish();
-                                        //loader.dismiss();
+                                userDatabaseRef.updateChildren(userInfo).addOnCompleteListener((OnCompleteListener<Void>) task1 -> {
+                                    if (task1.isSuccessful()){
+                                        Toast.makeText(RecipientRegistrationActivity.this, "Information Received Successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(RecipientRegistrationActivity.this, Objects.requireNonNull(task1.getException()).toString(), Toast.LENGTH_SHORT).show();
                                     }
+                                    finish();
+                                    //loader.dismiss();
                                 });
 
 
@@ -184,6 +182,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                                     }
 
                                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                                    assert bitmap != null;
                                     bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
                                     byte [] data = byteArrayOutputStream.toByteArray();
                                     UploadTask uploadTask = filePath.putBytes(data);
@@ -205,17 +204,14 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         String imageUrl = uri.toString();
-                                                        Map newImageMap = new HashMap();
+                                                        Map<String, Object> newImageMap = new HashMap<>();
                                                         newImageMap.put("profilepictureurl", imageUrl);
 
-                                                        userDatabaseRef.updateChildren(newImageMap).addOnCompleteListener(new OnCompleteListener() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task task) {
-                                                                if (task.isSuccessful()){
-                                                                    Toast.makeText(RecipientRegistrationActivity.this, "Image URL added to database successfully", Toast.LENGTH_SHORT).show();
-                                                                }else{
-                                                                    Toast.makeText(RecipientRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                                                }
+                                                        userDatabaseRef.updateChildren(newImageMap).addOnCompleteListener((OnCompleteListener<Void>) task12 -> {
+                                                            if (task12.isSuccessful()){
+                                                                Toast.makeText(RecipientRegistrationActivity.this, "Image URL added to database successfully", Toast.LENGTH_SHORT).show();
+                                                            }else{
+                                                                Toast.makeText(RecipientRegistrationActivity.this, Objects.requireNonNull(task12.getException()).toString(), Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
 
