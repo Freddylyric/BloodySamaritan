@@ -61,11 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
-        TextView backButton = findViewById(R.id.backButton);
+     //   TextView backButton = findViewById(R.id.backButton);
 
 
         toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle("Bloody Samaritan");
 
         drawerLayout= findViewById(R.id.drawerLayout);
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     progressBar.setVisibility(View.GONE);
                 }
             }
-
+            //AIzaSyA2WViAZ78wXUqiCZvPKuva0jnup910kck
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -230,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent2 = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent2);
                 break;
-            case R.id.Notifications:
+            case R.id.ChatBot:
                 Intent intent1 = new Intent(MainActivity.this, ChatBotMainActivity.class);
                 startActivity(intent1);
                 break;

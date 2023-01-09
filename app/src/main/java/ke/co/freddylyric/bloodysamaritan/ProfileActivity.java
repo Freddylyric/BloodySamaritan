@@ -41,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView idNumber = findViewById(R.id.idNumber);
         TextView phoneNumber = findViewById(R.id.phoneNumber);
         TextView bloodGroup = findViewById(R.id.bloodGroup);
+        TextView region = findViewById(R.id.region);
         CircleImageView profileImage = findViewById(R.id.profileImage);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().
@@ -55,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
                     phoneNumber.setText(snapshot.child("phoneNumber").getValue().toString());
                     bloodGroup.setText(snapshot.child("bloodGroup").getValue().toString());
                     email.setText(snapshot.child("email").getValue().toString());
+                    region.setText(snapshot.child("region").getValue().toString());
 
                     Glide.with(getApplicationContext()).load(snapshot.child("profilepictureurl").getValue().toString()).into(profileImage);
                 }

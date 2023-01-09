@@ -23,4 +23,14 @@
         <item> O+ </item>
         <item> O- </item>
     </string-array>
+
+    <string-array name="Region">
+        <item> Select your Region </item>
+        <item> Nairobi </item>
+        <item> Embu </item>
+        <item> Nakuru </item>
+        <item> Eldoret </item>
+        <item> Kisumu </item>
+        <item> Mombasa </item>
+    </string-array>
 </resources>

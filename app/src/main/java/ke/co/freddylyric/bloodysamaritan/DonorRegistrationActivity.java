@@ -42,7 +42,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
     //connect firebase to registration details
     private CircleImageView profile_image;
     private TextInputEditText registerFulName, registerIdNumber, registerPhoneNumber, registerEmail, registerPassword;
-    private Spinner bloodGroupSpinner;
+    private Spinner bloodGroupSpinner, regionSpinner;
     private Button registerButton;
     private Uri resultUri;
     private ProgressDialog loader;
@@ -73,6 +73,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
         registerEmail = findViewById(R.id.registerEmail);
         registerPassword = findViewById(R.id.registerPassword);
         bloodGroupSpinner = findViewById(R.id.bloodGroupSpinner);
+        regionSpinner = findViewById(R.id.regionSpinner);
         registerButton = findViewById(R.id.registerButton);
         loader = new ProgressDialog(this);
 
@@ -100,6 +101,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                 final String idNumber = registerIdNumber.getText().toString().trim();
                 final String phoneNumber = registerPhoneNumber.getText().toString().trim();
                 final String bloodGroup = bloodGroupSpinner.getSelectedItem().toString();
+                final String region = regionSpinner.getSelectedItem().toString();
 
                 //check to ensure values are not empty
                 if (TextUtils.isEmpty(email)){
@@ -126,6 +128,10 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                     Toast.makeText(DonorRegistrationActivity.this, "Select Blood Group", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (region.equals("Select your Region")){
+                    Toast.makeText(DonorRegistrationActivity.this, "Select Region", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 else {
                     loader.setMessage("Registering you...");
                     loader.setCanceledOnTouchOutside(false);
@@ -134,7 +140,6 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
 
                             if (!task.isSuccessful()){
                                 String error = task.getException().toString();
@@ -145,7 +150,6 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 userDatabaseRef = FirebaseDatabase.getInstance().getReference().child("users")
                                         .child(currentUserId);
 
-
                                 //creating hash keys
                                 HashMap<String, Object> userInfo = new HashMap<String, Object>();
                                 userInfo.put("id", currentUserId);
@@ -154,6 +158,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("idnumber", idNumber);
                                 userInfo.put("phoneNumber", phoneNumber);
                                 userInfo.put("bloodGroup", bloodGroup);
+                                userInfo.put("region", region);
                                 userInfo.put("type", "donor");
                                 userInfo.put("search", "donor" + bloodGroup);
 
@@ -174,7 +179,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 //save profile image to database
                                 if (resultUri !=null){
                                     final StorageReference filePath = FirebaseStorage.getInstance().getReference()
-                                            .child("profileImage").child(currentUserId);
+                                            .child("profilepictureurl").child(currentUserId);
                                     Bitmap bitmap = null;
 
                                     try {

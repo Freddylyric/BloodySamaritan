@@ -2,14 +2,15 @@ package ke.co.freddylyric.bloodysamaritan.models;
 
 public class User {
 
-    String name, bloodGroup, email, phoneNumber, id, search, type, profilepictureurl, idnumber;
+    String name, bloodGroup, email, phoneNumber, id, search, type, profilepictureurl, idnumber, region;
 
     public User() {
     }
 
-    public User(String name, String bloodGroup, String email, String phoneNumber, String id, String search, String type, String profilepictureurl, String idnumber) {
+    public User(String name, String bloodGroup, String region, String email, String phoneNumber, String id, String search, String type, String profilepictureurl, String idnumber) {
         this.name = name;
         this.bloodGroup = bloodGroup;
+        this. region = region;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.id = id;
@@ -73,6 +74,13 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getProfilepictureurl() {

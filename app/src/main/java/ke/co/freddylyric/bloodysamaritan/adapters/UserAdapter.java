@@ -1,6 +1,8 @@
 package ke.co.freddylyric.bloodysamaritan.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +23,14 @@ import ke.co.freddylyric.bloodysamaritan.models.User;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
 
-    private Context context;
-    private List<User> userList;
+    private TextView drive;
+    private final Context context;
+    private final List<User> userList;
 
     public UserAdapter(Context context, List<User> userList) {
         this.context = context;
         this.userList = userList;
+
     }
 
     @NonNull
@@ -35,6 +39,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
          View view =LayoutInflater.from(context).inflate(
                  R.layout.user_displayed_layout, parent, false);
          return new ViewHolder(view);
+
+
      }
 
      @Override
@@ -46,16 +52,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         holder.type.setText(user.getType());
 
         //hide email option from donors
-        if (user.getType().equals("donor")){
-            holder.emailNow.setVisibility((View.VISIBLE));
-        }
+        //if (user.getType().equals("donor")){
+           // holder.callNow.setVisibility((View.VISIBLE));
+
+       //}
 
          holder.userName.setText(user.getName());
          holder.userEmail.setText(user.getEmail());
          holder.phoneNumber.setText(user.getPhoneNumber());
          holder.bloodGroup.setText(user.getBloodGroup());
+         holder.region.setText(user.getRegion());
 
          Glide.with(context).load(user.getProfilepictureurl()).into(holder.userProfileImage);
+
+         holder.callNow.setOnClickListener(view -> {
+             String call = user.getPhoneNumber();
+             Intent intent = new Intent(Intent.ACTION_DIAL);
+             intent.setData(Uri.parse("tel:" + call));
+             context.startActivity(intent);
+         });
 
      }
 
@@ -64,11 +79,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
          return userList.size();
      }
 
-     public class ViewHolder extends RecyclerView.ViewHolder{
+     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public CircleImageView userProfileImage;
-        public TextView type, userName, userEmail, phoneNumber, bloodGroup;
-        public Button emailNow;
+        public TextView type, userName, userEmail, phoneNumber, bloodGroup, region;
+        public Button callNow;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +94,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             userEmail =itemView.findViewById(R.id.userEmail);
             phoneNumber =itemView.findViewById(R.id.phoneNumber);
             bloodGroup =itemView.findViewById(R.id.bloodGroup);
-            emailNow =itemView.findViewById(R.id.emailNow);
+            region =itemView.findViewById(R.id.region);
+            callNow =itemView.findViewById(R.id.callNow);
 
 
         }

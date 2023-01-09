@@ -42,7 +42,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
 
     private CircleImageView profile_image;
     private TextInputEditText registerFulName, registerIdNumber, registerPhoneNumber, registerEmail, registerPassword;
-    private Spinner bloodGroupSpinner;
+    private Spinner bloodGroupSpinner, regionSpinner;
     private Button registerButton;
     private Uri resultUri;
     private ProgressDialog loader;
@@ -75,7 +75,9 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
         registerPassword = findViewById(R.id.registerPassword);
         bloodGroupSpinner = findViewById(R.id.bloodGroupSpinner);
         registerButton = findViewById(R.id.registerButton);
+        regionSpinner = findViewById(R.id.regionSpinner);
         loader = new ProgressDialog(this);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -101,6 +103,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                 final String idNumber = registerIdNumber.getText().toString().trim();
                 final String phoneNumber = registerPhoneNumber.getText().toString().trim();
                 final String bloodGroup = bloodGroupSpinner.getSelectedItem().toString();
+                final String region = regionSpinner.getSelectedItem().toString();
 
                 //check to ensure values are not empty
                 if (TextUtils.isEmpty(email)){
@@ -125,6 +128,10 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                 }
                 if (bloodGroup.equals("Select your Blood Group")){
                     Toast.makeText(RecipientRegistrationActivity.this, "Select Blood Group", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (region.equals("Select your Region")){
+                    Toast.makeText(RecipientRegistrationActivity.this, "Select Region", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
@@ -155,6 +162,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("idnumber", idNumber);
                                 userInfo.put("phoneNumber", phoneNumber);
                                 userInfo.put("bloodGroup", bloodGroup);
+                                userInfo.put("region", region);
                                 userInfo.put("type", "recipient");
                                 userInfo.put("search", "recipient" + bloodGroup);
 
@@ -184,7 +192,7 @@ public class RecipientRegistrationActivity extends AppCompatActivity {
                                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                                     assert bitmap != null;
                                     bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
-                                    byte [] data = byteArrayOutputStream.toByteArray();
+                                    byte[] data = byteArrayOutputStream.toByteArray();
                                     UploadTask uploadTask = filePath.putBytes(data);
 
                                     uploadTask.addOnFailureListener(new OnFailureListener() {
