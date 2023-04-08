@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     progressBar.setVisibility(View.GONE);
                 }
             }
-            //AIzaSyA2WViAZ78wXUqiCZvPKuva0jnup910kck
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
